@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
@@ -39,7 +40,9 @@ public class NotificationServiceIT {
     private EmbeddedKafkaBroker kafkaEmbedded;
 
     private Consumer<String, Notification> consumer;
-    private static final String TOPIC = "logging";
+
+    @Value("${topic}")
+    private String TOPIC;
 
     @BeforeAll
     public void setup() {

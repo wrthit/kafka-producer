@@ -5,6 +5,7 @@ import com.kafka.example.producer.service.NotificationService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -18,7 +19,7 @@ public class NotificationController {
     }
 
     @PostMapping(value = "/log")
-    public void logNotification(Notification notification) {
+    public void logNotification(@RequestBody Notification notification) {
         notificationService.logNotification(notification);
     }
 }
