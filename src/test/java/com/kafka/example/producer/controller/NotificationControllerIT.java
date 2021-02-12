@@ -4,6 +4,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,6 +42,7 @@ public class NotificationControllerIT {
         mockMvc.perform(post("/notification/log")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
             .content(new ObjectMapper().writeValueAsString(notification)))
+            .andExpect(status().isOk())
             .andReturn();
         
         verify(notificationServiceMock).logNotification(notification);
